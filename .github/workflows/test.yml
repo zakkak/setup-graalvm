@@ -187,7 +187,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        version: ['mandrel-22.2.0.0-Final', 'mandrel-latest']
+        version: ['mandrel-22.2.0.0-Final', 'mandrel-latest', 'mandrel-22', 'mandrel-23.0']
         java-version: ['17']
         distribution: ['mandrel']
         os: [windows-latest, ubuntu-latest]
