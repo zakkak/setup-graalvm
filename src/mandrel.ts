@@ -10,13 +10,18 @@ export async function setUpMandrel(
   graalvmVersion: string,
   javaVersion: string
 ): Promise<string> {
-  const mandrelVersion = graalvmVersion.substring(
-    c.MANDREL_NAMESPACE.length,
-    graalvmVersion.length
-  )
+  let mandrelVersion = graalvmVersion
+  if (graalvmVersion.startsWith(c.MANDREL_NAMESPACE)) {
+    mandrelVersion = graalvmVersion.substring(
+      c.MANDREL_NAMESPACE.length,
+      graalvmVersion.length
+    )
+  }
 
   let mandrelHome
   switch (mandrelVersion) {
+    case '':
+      // Fall back to latest
     case 'latest':
       mandrelHome = await setUpMandrelLatest(javaVersion)
       break
